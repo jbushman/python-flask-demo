@@ -72,9 +72,9 @@ spec:
 
     - id: publish
       name: Publish
-      action: publish:bitbucket
+      action: publish:github
       input:
-        allowedHosts: ['stash.endurance.com']
+        allowedHosts: ['github.com']
         description: 'This is {{ parameters.name }}'
         repoUrl: '{{ parameters.repoUrl }}'
 
