@@ -2,7 +2,7 @@ apiVersion: backstage.io/v1beta2
 kind: Template
 metadata:
   name: python-flask-recipe
-  title: Test Python Service
+  title: Python Flask Recipe
   description: scaffolder v1beta2 python service
 spec:
   owner: backstage/techdocs-core
