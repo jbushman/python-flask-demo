@@ -1,0 +1,91 @@
+apiVersion: backstage.io/v1beta2
+kind: Template
+metadata:
+  name: python-flask-recipe
+  title: Test Python Service
+  description: scaffolder v1beta2 python service
+spec:
+  owner: backstage/techdocs-core
+  type: service
+  parameters:
+    - title: Choose OKD Cluster
+      required:
+        - cluster
+      properties:
+        cluster:
+          title: Cluster
+          type: string
+          description: Houston1 or Sandbox
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+    - title: Choose OKD Project
+      required:
+        - project
+      properties:
+        project:
+          title: Project
+          type: string
+          description: Unique name of the project
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+    - title: Choose Name
+      required:
+        - name
+      properties:
+        name:
+          title: Name
+          type: string
+          description: Unique name of the component
+          ui:autofocus: true
+          ui:options:
+            rows: 5
+    - title: Choose a location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - stash.endurance.com
+
+  # here's the steps that are executed in series in the scaffolder backend
+  steps:
+    - id: fetch-base
+      name: Fetch Base
+      action: fetch:cookiecutter
+      input:
+        url: ./template
+        values:
+          name: '{{ parameters.name }}'
+
+    - id: fetch-docs
+      name: Fetch Docs
+      action: fetch:plain
+      input:
+        targetPath: ./community
+        url: https://github.com/backstage/community/tree/main/backstage-community-sessions
+
+    - id: publish
+      name: Publish
+      action: publish:bitbucket
+      input:
+        allowedHosts: ['stash.endurance.com']
+        description: 'This is {{ parameters.name }}'
+        repoUrl: '{{ parameters.repoUrl }}'
+
+    - id: register
+      name: Register
+      action: catalog:register
+      input:
+        repoContentsUrl: '{{ steps.publish.output.repoContentsUrl }}'
+        catalogInfoPath: '/catalog-info.yaml'
+
+  # some outputs which are saved along with the job for use in the frontend
+  output:
+    remoteUrl: '{{ steps.publish.output.remoteUrl }}'
+    entityRef: '{{ steps.register.output.entityRef }}'

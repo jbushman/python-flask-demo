@@ -1,0 +1,190 @@
+openapi: 3.0.0
+info:
+  title: Python Common Deploy
+  description: This is a simple API
+  contact:
+    email: neutron@endurance.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: /api
+    description: Python Test API
+tags:
+  - name: team
+    description: Neutron
+  - name: developers
+    description: Operations available to regular developers
+paths:
+  /customers:
+    get:
+      tags:
+        - developers
+      summary: searches customer
+      description: |
+        By passing in the appropriate options, you can search for
+        available customers in the system
+      operationId: api.customer.find_all
+      parameters:
+        - name: skip
+          in: query
+          description: number of records to skip for pagination
+          required: false
+          style: form
+          explode: true
+          schema:
+            minimum: 0
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: maximum number of records to return
+          required: false
+          style: form
+          explode: true
+          schema:
+            maximum: 50
+            minimum: 0
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Customer'
+        "400":
+          description: bad input parameter
+    put:
+      tags:
+        - developers
+      summary: searches customer
+      description: Updates a customer record
+      operationId: api.customer.update
+      requestBody:
+        description: Customer to update
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: customer
+              $ref: '#/components/schemas/Customer'
+      responses:
+        "200":
+          description: customer updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        "400":
+          description: bad input parameter
+    post:
+      tags:
+        - admins
+      summary: adds a customer
+      description: Adds a customer to the system
+      operationId: api.customer.save
+      requestBody:
+        description: Customer to add
+        required: true
+        content:
+          application/json:
+            schema:
+              x-body-name: customer
+              $ref: '#/components/schemas/Customer'
+      responses:
+        "201":
+          description: customer created
+        "400":
+          description: invalid input, object invalid
+        "409":
+          description: an existing customer already exists
+
+  /customers/{identifier}:
+    get:
+      tags:
+        - developers
+      summary: searches customer
+      description: |
+        By passing in the appropriate options, you can search for
+        available customers in the system
+      operationId: api.customer.find_by_id
+      parameters:
+        - name: identifier
+          in: path
+          description: id of the customer
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+        "400":
+          description: bad input parameter
+    delete:
+      tags:
+        - developers
+      summary: deletes a customer
+      description: delete a customer for the given id
+      operationId: api.customer.delete
+      parameters:
+        - name: identifier
+          in: path
+          description: id of the customer to delete
+          required: true
+          schema:
+            type: string
+      responses:
+        "203":
+          description: customer deleted successfully
+        "400":
+          description: bad input parameter
+        "404":
+          description: customer not found for the given id
+  /health/status:
+    get:
+      operationId: api.health.status
+      responses:
+        "200":
+          description: the health status of the service
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+components:
+  schemas:
+    Customer:
+      required:
+        - first_name
+        - last_name
+        - middle_initial
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0851
+        first_name:
+          type: string
+          example: John
+        last_name:
+          type: string
+          example: Doe
+        middle_initial:
+          type: string
+          example: Frank
+    HealthCheck:
+      type: object
+      properties:
+        check:
+          type: string
+          example: good
+

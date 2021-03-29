@@ -1,0 +1,9 @@
+test_name: Healthcheck Python Test API
+
+stages:
+  - name: Status 200 from Healthcheck
+    request:
+      url: http://localhost:8000/api/health/status
+      method: GET
+    response:
+      status_code: 200

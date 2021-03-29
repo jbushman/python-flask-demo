@@ -1,0 +1,27 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+yoyo-migrations = "==7.1.2"
+pytest = "==6.0.0"
+pytest-mock = "==3.2.0"
+pytest-flask = "==1.0.0"
+pytest-cov = "==2.10.0"
+
+[packages]
+flask = "==1.1.2"
+connexion = {extras = ["swagger-ui"],version = "*"}
+flask-limiter = "==1.2.1"
+gunicorn = "==20.0.4"
+python-json-logger = "==0.1.11"
+sqlalchemy = "==1.3.17"
+pymysql = "==0.10.0"
+cryptography = "*"
+
+# Temporarily commented out until issues with the dependency injector and SQLAlchemy can be resolved
+#dependency-injector = "==3.18.1"
+
+[requires]
+python_version = "3.8"

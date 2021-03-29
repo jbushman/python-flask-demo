@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: python-flask-recipe
+  description: An example flask application
+  labels:
+    system: public-websites
+  annotations:
+    'backstage.io/openshift-id': python-flask-recipe
+  tags:
+    - python
+spec:
+  type: website
+  lifecycle: production
+  owner: neutron-team
