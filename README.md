@@ -111,7 +111,7 @@ Execute the following commands from the project root directory in a terminal
 Follow the [Google Style Guide](https://github.com/google/styleguide/blob/gh-pages/pyguide.md)
 
 ## Contributing
-Pull requests are welcome and encouraged. The source is located [here](https://stash.endurance.com/projects/DEVOPS/repos/python-flask-recipe/browse)
+Pull requests are welcome and encouraged. The source is located [here](https://github.com/jbushman/python-flask-demo)
 
 #### Cloning the repository
 `git clone git@github.com:jbushman/python-flask-demo.git`
