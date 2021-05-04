@@ -1,4 +1,4 @@
-# Python Flask Microservice Recipe
+# Python Flask Microservice Demo
 
 ### Table of Contents
 * [Description](#description)
