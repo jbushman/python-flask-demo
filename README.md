@@ -12,7 +12,7 @@
 * [Contributing](#contributing)
 
 ## Description
-The Python Flask Microservice recipe has been created to help teams in a variety of ways.
+The Python Flask Microservice demo has been created to help teams in a variety of ways.
 
 1. To bootstrap a new project.
 2. As a reference to one of many ways to build an n-tier application architecture.
@@ -20,7 +20,7 @@ The Python Flask Microservice recipe has been created to help teams in a variety
 4. A roadmap outlining the components needed for building a well build microservice.
 5. Any other way one sees fit.
 
-The implementation of this microservice and its inner patterns and components are perpetually open to constructive criticism for the purpose of improvement. The goal of this recipe is to give the best representation of a well-architected microservice, and to achieve that, such criticism is required. The authors of this recipe welcome constructive criticism for improvements around the areas of performance, scalability, readability, maintainability and other areas of `ility`. Criticism around styling and other subjective topics that do not follow the company Python guidelines will not be taken seriously and are subject to internal mocking and judgment, so be nice. 😀
+The implementation of this microservice and its inner patterns and components are perpetually open to constructive criticism for the purpose of improvement. The goal of this demo is to give the best representation of a well-architected microservice, and to achieve that, such criticism is required. The authors of this demo welcome constructive criticism for improvements around the areas of performance, scalability, readability, maintainability and other areas of `ility`. Criticism around styling and other subjective topics that do not follow the company Python guidelines will not be taken seriously and are subject to internal mocking and judgment, so be nice. 😀
 
 
 ## Python Packages
@@ -91,11 +91,11 @@ Execute the following commands from the project root directory in a terminal
 
 ### Docker
 
-#### Builds the docker image with a tag of `python-flask-recipe`
-`docker build --rm --tag python-flask-recipe .`
+#### Builds the docker image with a tag of `python-flask-demo`
+`docker build --rm --tag python-flask-demo .`
 
 #### Run the docker container on port 8000. Removes the container when stopped.
-`docker run --rm -p 8000:8000 --name python-flask-app python-flask-recipe_web`
+`docker run --rm -p 8000:8000 --name python-flask-app python-flask-_web`
 
 #### The following commands are used to clean-up docker containers and images
 
