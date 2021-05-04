@@ -114,5 +114,5 @@ Follow the [Google Style Guide](https://github.com/google/styleguide/blob/gh-pag
 Pull requests are welcome and encouraged. The source is located [here](https://stash.endurance.com/projects/DEVOPS/repos/python-flask-recipe/browse)
 
 #### Cloning the repository
-`git clone ssh://git@stash.endurance.com:7999/devops/python-flask-recipe.git`
+`git clone git@github.com:jbushman/python-flask-demo.git`
 
